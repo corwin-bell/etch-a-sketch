@@ -8,3 +8,13 @@ for (let i = 1; i <= (16*16); i++) {
     gridSquare.className = 'gridSquare';
     gridContainer.appendChild(gridSquare);
 }
+
+// add hover effect, when mouse passing through
+const grid = document.querySelectorAll('.gridSquare');
+grid.forEach((gridSquare) => {
+    gridSquare.addEventListener('mouseenter', () => {
+        gridSquare.style.backgroundColor = 'gray';
+    })
+})
+// grid square chages color
+// leaves a trail like a pen stroke

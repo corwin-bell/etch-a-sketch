@@ -3,7 +3,7 @@
 let gridContainer = document.querySelector('.gridContainer');
 
 // loop creation of squares
-for (let i = 1; i < (16*16); i++) {
+for (let i = 1; i <= (16*16); i++) {
     let gridSquare = document.createElement('div');
     gridSquare.className = 'gridSquare';
     gridContainer.appendChild(gridSquare);

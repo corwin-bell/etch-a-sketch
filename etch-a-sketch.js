@@ -1,26 +1,26 @@
 // create a 16 x 16 grid of divs inside the gridContainer using JS
-// define the container to store the grid
+
+// DEFINE CONSTANTS AND VARIABLES
 const createGridButton = document.querySelector('button');
 const gridContainer = document.querySelector('.gridContainer');
+let gridContainerSize = 960;
 let gridSquareNum = 16;
+let squareBorder = 1;
 let grid = document.querySelectorAll('.gridSquare');
-// create initial grid squares
+
+// DEFINE FUNCTIONS
 function createGrid (gridSquareNum) {
     for (let i = 1; i <= (gridSquareNum*gridSquareNum); i++) {
         let gridSquare = document.createElement('div');
         gridSquare.className = 'gridSquare';
         gridContainer.appendChild(gridSquare);
     }
-    // create gridSquare nodelist after creation
     grid = document.querySelectorAll('.gridSquare');
-    let gridContainerSize = 960;
-    let squareBorder = 1;
     let squareSize = gridContainerSize/gridSquareNum - (2*squareBorder);
     grid.forEach((gridSquare) => { 
         gridSquare.style.cssText = `height: ${squareSize}px; width: ${squareSize}px; `
     });    
 }
-createGrid(16);
 
 function addSketchEffect () {
     // add sketching effect to grid
@@ -30,13 +30,23 @@ function addSketchEffect () {
         })
     });
 }
+
+// CALL FUNCTIONS
+createGrid(16);
 addSketchEffect();
 
-// create new grid with desired effects on click
 // on button click, prompt user for gridSquareNum
     createGridButton.addEventListener('click', () => {
         // accept 100 or less grid squares as input
-        let gridSquareNum = prompt('Enter number of desired grid squares (must be less than 100).',0);
+        while (true) {
+            gridSquareNum = prompt(`Enter number of desired grid squares height/width (must be between 1 and 100).`,0);
+            if (gridSquareNum <= 100 && gridSquareNum > 0) {
+                break;
+            }
+            else {
+                alert('please enter a valid number');
+            }
+        }
         // removes existing grid
         grid.forEach(gridSquare => gridSquare.remove());
         // adds new grid that fills same space
